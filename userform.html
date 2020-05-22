@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<script type="text/javascript" src="js/jquery-3.3.1.slim.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+
+        });
+        //cancel butto 
+        function cancel() {
+  		        var conf = confirm ("Are you sure to cancel this form?");
+  		        if (conf) {
+  		          window.location.replace("userform.html");
+  		          return true;
+  		        }
+  		else{
+  			return false;
+  		}
+  		// $(window).bind('beforeunload', function(){
+  		// 	return '';
+  		// });
+        }
+	  
+        //Y/N
+        function showService() {
+  		  $('input[type=radio][name=option]').change(function() {
+  		      if (this.value == 'Yes') {
+  	              $('#serviceRow').hide();
+  	              $('#mulserviceRow').show();
+  		      }
+  		      else if (this.value == 'No') {
+  	              $('#serviceRow').show();
+  	              $('#mulserviceRow').hide();
+  		      }
+  		  });
+        }
+    </script>
+	<meta charse="utf-8">
+	<meta name ="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Required meta tags -->
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<style>
+		/*.container {margin: auto;}*/
+	</style>
+</head>
+
+
+<body>
+	<header>
+		<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+				<div class="conttainer">
+					<a class="navbar-brand" href="#">CTS Computer Inventory</a>
+					<div class ="navbar-nav ml-sm-auto">
+						<div class="dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" 				data-toggle="dropdown">Devices</a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<a class="dropdown-item" href="listingDevices.php">List</a>
+								<a class="dropdown-item" href="userform.html">Add Device</a>
+								<a class="dropdown-item" href="retireddevices.php">Retired Device</a>
+								<a class="dropdown-item" href="#">Cancel</a>
+								</div>
+							</div>	
+							<div class="dropdown">
+								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" 						data-toggle="dropdown">Log Out</a>
+								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+									<a class="dropdown-item" href="loginform.html">Log Out</a>
+										<a class="dropdown-item" href="#">Cancel</a>
+										</div>
+										</div>
+										<div class="dropdown">
+											<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">Manager Only</a>
+											<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+												<a class="dropdown-item" href="usertable.php">For Users</a>
+												<a class="dropdown-item" href="loginform.html">Login as Manager</a>
+												<a class="dropdown-item">Cancel</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</nav>
+	</header>
+	<h1 style="text-align:center"> Registration Form </h1>
+	<div class="container">
+		<div>
+			<div class ="panel panel-primary">
+				<div class="panel-body">
+					<form action="insert.php" method="post">
+			       		<div class="form-group">
+			          	  <legend>
+							  Multiple Machines</legend>
+			           		<div>
+			             	   <div>
+			               			<label class="form-group">Yes</label>
+									<input class="form-group" type="radio" name="option" value="Yes" id="MultipleMachines" onclick="showService()">
+			             	   </div>
+							   <div>
+								   <label class="form-group">No</label>
+								   <input class="form-group" type="radio" name="option" value="No" id="MultipleMachines" checked onclick="showService()">
+							   </div>
+						   </div>
+						<div class="form-group" id="serviceRow">
+							<label for="firstName">Service Tag:</label>
+							<input type="text" class="form-control" id="tag" name="serviceTag"/>
+						</div>
+						<div class="form-group" style="display:none;" id="mulserviceRow">
+							<label for="lastName">Multiple Service Tags:</label>
+							<input type=text class="form-control" id="multag" name="mulserviceTag" rows="4"/>
+						</div>
+						
+						<div class="form-group">
+							<label for="model">Model:</label>
+							<input type="text" class="form-control" id="email" name="model"/>
+						</div>
+						
+						<div class="form-group">
+							<label for="email">Type:</label>
+							<div>
+								<label for="laptop" class="radio-inline">
+									<input type="radio" name="type" id="male" value="Laptop">
+									Laptop
+								</label>
+								<label for="desktop" class="radio-inline">
+									<input type="radio" name="type" id="female" value="Desktop">
+									Desktop
+								</label>
+								<label for="tablet" class="radio-inline">
+									<input type="radio" name="type" id="female" value="Tablet">
+									Tablet
+								</label>
+								<label for="others" class="radio-inline">
+									<input type="radio" name="type" id="others" value="O">
+									Others
+								</label>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="password">Purchase Date:</label>
+							<input type="text" class="form-control" id="password" name="purchasedate"/>
+						</div>
+						<div class="form-group">
+							<label for="email">Warranty Provider:</label>
+							<input type="text" class="form-control" id="number" name="provider"/>
+						</div>
+						<div class="form-group">
+							<label for="email">Warranty Expiration:</label>
+							<input type="text" class="form-control" id="number" name="expiration"/>
+						</div>
+						<div class="form-check">
+							<input type="checkbox" class="form-check-input" id="exampleCheck1" name = "retired" value = "1">
+							<label class="form-check-label" for="exampleCheck1">Retired</label>
+						</div>
+						<button class="btn btn-primary" name="submit">Submit</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>			
+</body>
+	<script src="js/jquery-3.3.1.slim.min.js"></script>
+	<script src="js/popper.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+</html>
